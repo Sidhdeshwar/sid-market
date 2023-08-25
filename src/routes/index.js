@@ -1,22 +1,17 @@
 const express = require('express');
-const authRoutes = require('./login.routes');
-const registerRoutes = require('./register.routes');
+const authRoutes = require('./seller.auth.routes');
 
 const app = express();
 
 const routesArray = [
   {
-    path: '/login',
+    path: '/auth',
     route: authRoutes,
-  },
-  {
-    path: '/register',
-    route: registerRoutes,
   },
 ];
 
-routesArray.forEach((val) => {
-  app.use(val.path, val.route);
+routesArray.forEach((obj) => {
+  app.use(obj.path, obj.route);
 });
 
 module.exports = app;
