@@ -3,6 +3,6 @@ const controllerIndex = require('../../../controller/index');
 
 const router = express.Router();
 
-router.route('/');
+router.route('/org').patch(controllerIndex.usersController.updateCompany);
 
 module.exports = router;
