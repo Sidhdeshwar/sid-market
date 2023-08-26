@@ -1,10 +1,11 @@
 const express = require('express');
-const controllerIndex = require('../controller/index');
+const controllerIndex = require('../../../controller/index');
 
 const router = express.Router();
 
 router.route('/login').post(controllerIndex.loginController);
 router.route('/register').post(controllerIndex.registerController);
+router.route('/self').post(controllerIndex.selfController);
 // router.route('/change-password').post();
 // router.route('/reset-password').post();
 // router.route('/forgot-password').post();

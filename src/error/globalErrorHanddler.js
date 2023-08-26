@@ -53,8 +53,8 @@ const globalError = (err, req, res, next) => {
       console.log(colors.redBright('Z'));
       res.status(myError.statusCode).json({
         status: err.status,
-        message: myError,
-        err,
+        message: err.message,
+        stack: err.stack,
       });
     }
   }

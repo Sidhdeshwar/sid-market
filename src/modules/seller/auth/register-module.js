@@ -13,7 +13,7 @@ const organisationSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  },
+  }
 );
 
 const registerSchema = new mongoose.Schema(

@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const catchAsync = require('../../../utilities/catch.Error');
 const authModels = require('../../../modules/seller/auth/register-module');
 
-const secreteKey = 'secreateKey';
+const secreteKey = process.env.SECREATE_KEY;
 
 const registerFun = catchAsync(async (req, res, next) => {
   const org = { company: req.body.company, email: req.body.email };
@@ -17,7 +17,7 @@ const registerFun = catchAsync(async (req, res, next) => {
       console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
       return next(err);
     }
-    res.status(201).json({
+    return res.status(201).json({
       user, token,
     });
   });
