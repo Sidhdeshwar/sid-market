@@ -20,7 +20,7 @@ const registerSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      // unique: true,
+      unique: true,
     },
     password: {
       type: String,
@@ -28,7 +28,10 @@ const registerSchema = new mongoose.Schema(
     },
     name: String,
     company: String,
-    _org: organisationSchema,
+    _org: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: '_org'
+    },
     isEmailVerified: {
       type: Boolean,
       default: false,
