@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-const authModels = require('../../../modules/seller/auth/register-module');
+const authModels = require('../modules/register-module');
 
 const getAllUsersDB = async () => {
   const allUsers = await authModels.registerModel.find(); //* not works async await

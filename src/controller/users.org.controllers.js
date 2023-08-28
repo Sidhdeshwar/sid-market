@@ -1,8 +1,8 @@
-const catchAsync = require('../../../../utilities/catch.Error');
-const CreateError = require('../../../../utilities/CreateError');
-const authModels = require('../../../../modules/seller/auth/register-module');
-const settingService = require('../../../../services/seller/settings/users');
-const UsersPaginationClass = require('../../../../utilities/Users.Pagination.Class');
+const catchAsync = require('../utilities/catch.Error');
+const CreateError = require('../utilities/CreateError');
+const authModels = require('../modules/register-module');
+const settingService = require('../services/users');
+const UsersPaginationClass = require('../utilities/Users.Pagination.Class');
 
 const updateCompany = catchAsync(async (req, res, next) => {
   const data = await authModels.registerModel.findById(req.USER_ID);

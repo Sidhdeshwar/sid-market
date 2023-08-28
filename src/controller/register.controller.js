@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const jwt = require('jsonwebtoken');
-const catchAsync = require('../../../utilities/catch.Error');
-const authModels = require('../../../modules/seller/auth/register-module');
+const catchAsync = require('../utilities/catch.Error');
+const authModels = require('../modules/register-module');
 
 const secreteKey = process.env.SECREATE_KEY;
 

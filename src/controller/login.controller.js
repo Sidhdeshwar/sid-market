@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-const catchAsync = require('../../../utilities/catch.Error');
-const authModels = require('../../../modules/seller/auth/register-module');
-const CreateError = require('../../../utilities/CreateError');
+const catchAsync = require('../utilities/catch.Error');
+const authModels = require('../modules/register-module');
+const CreateError = require('../utilities/CreateError');
 
 const secreateKey = process.env.SECREATE_KEY;
 

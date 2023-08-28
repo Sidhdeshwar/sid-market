@@ -1,6 +1,6 @@
 const express = require('express');
-const authRoutes = require('./seller/auth/seller.auth.routes');
-const settingsRouter = require('./seller/setting/users.settings.routes')
+const authRoutes = require('./seller.auth.routes');
+const settingsRouter = require('./users.settings.routes')
 
 const app = express();
 
