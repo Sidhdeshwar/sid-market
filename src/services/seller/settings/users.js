@@ -1,7 +1,8 @@
+/* eslint-disable no-underscore-dangle */
 const authModels = require('../../../modules/seller/auth/register-module');
 
 const getAllUsersDB = async () => {
-  const allUsers = await authModels.registerModel.find(); //not works async / await
+  const allUsers = await authModels.registerModel.find(); //* not works async await
   return allUsers;
 };
 
@@ -14,4 +15,28 @@ const addUserDB = async (req) => {
   return addUser;
 };
 
-module.exports = { getAllUsersDB, addUserDB };
+const updateUserDB = (req) => {
+  const updateUser = authModels.registerModel.findByIdAndUpdate(
+    req.params._id,
+    req.body,
+  );
+  return updateUser;
+};
+
+const updateUsersRoleDB = (req) => {
+  const updateRoleUser = authModels.registerModel.findByIdAndUpdate(
+    req.params._id,
+    { role: req.body.role },
+  );
+  return updateRoleUser;
+};
+
+const deleteUserDB = (req) => {
+  const deleteUser = authModels.registerModel.findByIdAndUpdate(
+    req.params._id,
+    { deleted: true },
+  );
+  return deleteUser;
+};
+
+module.exports = { getAllUsersDB, addUserDB, updateUserDB, updateUsersRoleDB, deleteUserDB };

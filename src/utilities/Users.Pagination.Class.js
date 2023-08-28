@@ -1,6 +1,8 @@
 const colors = require('console-log-colors');
 
 class UsersClass {
+  results;
+
   constructor(allUsers, query) {
     this.allUsers = allUsers;
     this.query = query;
@@ -40,6 +42,19 @@ class UsersClass {
       this.allUsers = this.allUsers.find(exactRequired);
     }
     return this;
+  }
+
+  finalCall() {
+    // const page = +this.query.page; //* Both are Same
+    // let { limit } = this.query; //* Both are Same
+    // limit = +limit;
+
+    // const kitiSkip = (page - 1) * limit;
+    // const totalResults = this.allUsers;
+    // const totalPages = totalResults / limit;
+    // this.allUsers = this.allUsers.skip(kitiSkip).limit(limit);
+    // const result = this.allUsers;
+    // return { result, page, limit, totalPages, totalResults };
   }
 }
 
