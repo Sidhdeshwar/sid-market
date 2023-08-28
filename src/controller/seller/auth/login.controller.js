@@ -11,6 +11,7 @@ const loginFun = catchAsync(async (req, res, next) => {
     return next(new CreateError('Incorrect Email or Password', 404));
   }
   jwt.sign(
+    // eslint-disable-next-line no-underscore-dangle
     { id: findUser._id, email: findUser.email },
     secreateKey,
     { expiresIn: '1d' },
