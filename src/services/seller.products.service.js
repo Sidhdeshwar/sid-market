@@ -12,4 +12,35 @@ const addProductDB = async (req, imgArray) => {
   return addProd;
 };
 
-module.exports = { addProductDB };
+const getOneProductDB = async (req) => {
+  const getProd = await productsModal.findById(req.params.id);
+  return getProd;
+};
+
+const updateProductDB = async (req) => {
+  const updateProd = await productsModal.findByIdAndUpdate(
+    req.params.id,
+    req.body
+  );
+  return updateProd;
+};
+
+const updateProductImagesDB = async (req, imagesArray) => {
+  //   const imgObj = { images: imagesArray };
+  //   const updateProd = await productsModal.findByIdAndUpdate(req.params.id, imgObj);
+  //   return updateProd;
+  //! Need to Update Images
+};
+
+const deleteProductDB = async (req) => {
+  const deleteProd = await productsModal.findByIdAndDelete(req.params.id);
+  return deleteProd;
+};
+
+module.exports = {
+  addProductDB,
+  getOneProductDB,
+  updateProductDB,
+  updateProductImagesDB,
+  deleteProductDB,
+};

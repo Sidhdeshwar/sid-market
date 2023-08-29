@@ -5,7 +5,7 @@ const globalErrorHanddler = require('./src/error/globalErrorHanddler');
 
 const app = express();
 app.use(express.json());
-
+// app.use('../images/product', express.static('images'));
 app.use('/', routes);
 app.all('*', (req, res, next) => {
   // eslint-disable-next-line new-cap

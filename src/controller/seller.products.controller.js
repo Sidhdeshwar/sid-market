@@ -19,11 +19,59 @@ const imageMiddleware = multer({
 const addProduct = catchAsync(async (req, res, next) => {
   console.log('XXXXXXXXXX ; ', req.body);
   const imagesArray = req.files.map((obj) => obj.path) || [];
-  const addProd = await serviceIndex.productsService.addProductDB(req, imagesArray);
+  const addProd = await serviceIndex.productsService.addProductDB(
+    req,
+    imagesArray
+  );
   res.status(200).json({
     status: 'success',
     data: addProd,
   });
 });
 
-module.exports = { addProduct, imageMiddleware };
+const getOneProduct = catchAsync(async (req, res, next) => {
+  const oneProd = await serviceIndex.productsService.getOneProductDB(req);
+  res.status(200).json({
+    status: 'success',
+    data: oneProd,
+  });
+});
+
+const updateProduct = catchAsync(async (req, res, next) => {
+  const updateProd = await serviceIndex.productsService.updateProductDB(req);
+  res.status(200).json({
+    status: 'success',
+    data: updateProd,
+  });
+});
+
+const updateProductImages = catchAsync(async (req, res, next) => {
+  // console.log('YYYYYYYYYYYYYYY  ; ', req.body);
+  // const imagesArray = req.files.map((obj) => obj.path) || [];
+  // const addProd = await serviceIndex.productsService.updateProductImagesDB(
+  //   req,
+  //   imagesArray,
+  // );
+  // res.status(200).json({
+  //   status: 'success',
+  //   data: addProd,
+  // });
+  //! Remaining
+});
+
+const deleteProduct = catchAsync(async (req, res, next) => {
+  const deleteProd = await serviceIndex.productsService.deleteProductDB(req);
+  res.status(200).json({
+    status: 'success',
+    data: deleteProd,
+  });
+});
+
+module.exports = {
+  addProduct,
+  imageMiddleware,
+  getOneProduct,
+  updateProduct,
+  updateProductImages,
+  deleteProduct,
+};

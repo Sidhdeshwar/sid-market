@@ -12,4 +12,7 @@ router
     productsIndex.productsController.imageMiddleware.array('prod'),
     productsIndex.productsController.addProduct,
   );
+router.route('/:id').get(productsIndex.productsController.getOneProduct).patch(productsIndex.productsController.updateProduct).delete(productsIndex.productsController.deleteProduct);
+router.route('/images/:id').patch(productsIndex.productsController.updateProductImages); //! Remaining
+
 module.exports = router;
