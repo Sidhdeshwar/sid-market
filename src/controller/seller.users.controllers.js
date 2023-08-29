@@ -1,21 +1,22 @@
 const catchAsync = require('../utilities/catch.Error');
 const CreateError = require('../utilities/CreateError');
-const authModels = require('../modules/register-module');
-const settingService = require('../services/users');
+const authModels = require('../modules/auth.modal');
+const serviceIndex = require('../services/index');
 const UsersPaginationClass = require('../utilities/Users.Pagination.Class');
 
 const updateCompany = catchAsync(async (req, res, next) => {
-  const data = await authModels.registerModel.findById(req.USER_ID);
+  const data = req.USER_DATA;
   if (!data) {
     return next(
-      new CreateError(`User with USER_ID : ${req.USER_ID} Not Found.`, 404)
+      // eslint-disable-next-line no-underscore-dangle
+      new CreateError(`User with USER_ID : ${req.USER_DATA._id} Not Found.`, 404),
     );
   }
   // eslint-disable-next-line no-underscore-dangle
   const companyId = data._org._id;
   const updateCompanyInfoDB = await authModels.orgModel.findByIdAndUpdate(
     companyId,
-    req.body
+    req.body,
   );
   return res.status(201).json({
     status: 'success',
@@ -24,7 +25,7 @@ const updateCompany = catchAsync(async (req, res, next) => {
 });
 
 const addUser = catchAsync(async (req, res, next) => {
-  const addUserDB = await settingService.addUserDB(req);
+  const addUserDB = await serviceIndex.usersService.addUserDB(req);
   return res.status(201).json({
     status: 'success',
     addUserDB,
@@ -66,7 +67,7 @@ const getAllUsers = catchAsync(async (req, res, next) => {
 });
 
 const updateUser = catchAsync(async (req, res, next) => {
-  const update = await settingService.updateUserDB(req);
+  const update = await serviceIndex.usersService.updateUserDB(req);
   res.status(201).json({
     status: 'success',
     update,
@@ -74,7 +75,7 @@ const updateUser = catchAsync(async (req, res, next) => {
 });
 
 const updateUsersRole = catchAsync(async (req, res, next) => {
-  const updateRole = await settingService.updateUsersRoleDB(req);
+  const updateRole = await serviceIndex.usersService.updateUsersRoleDB(req);
 
   res.status(201).json({
     status: 'success',
@@ -83,7 +84,7 @@ const updateUsersRole = catchAsync(async (req, res, next) => {
 });
 
 const deleteUser = catchAsync(async (req, res, next) => {
-  const deleted = await settingService.deleteUserDB(req);
+  const deleted = await serviceIndex.usersService.deleteUserDB(req);
 
   res.status(201).json({
     status: 'success',

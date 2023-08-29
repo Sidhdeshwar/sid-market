@@ -1,11 +1,13 @@
 const express = require('express');
 const controllerIndex = require('../controller');
+const authMiddleware = require('../middlewares/seller');
 
 const router = express.Router();
 
-router.route('/login').post(controllerIndex.loginController);
-router.route('/register').post(controllerIndex.registerController);
-router.route('/self').post(controllerIndex.selfController);
+router.route('/login').post(controllerIndex.authController.loginFun);
+router.route('/register').post(controllerIndex.authController.registerFun);
+router.use(authMiddleware);
+router.route('/self').post(controllerIndex.authController.selfFun);
 // router.route('/change-password').post();
 // router.route('/reset-password').post();
 // router.route('/forgot-password').post();

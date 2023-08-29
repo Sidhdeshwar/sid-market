@@ -1,6 +1,7 @@
 const express = require('express');
 const authRoutes = require('./seller.auth.routes');
-const settingsRouter = require('./users.settings.routes')
+const usersRoutes = require('./seller.users.routes');
+const productsRoute = require('./seller.products.routes');
 
 const app = express();
 
@@ -11,7 +12,11 @@ const routesArray = [
   },
   {
     path: '/users',
-    route: settingsRouter,
+    route: usersRoutes,
+  },
+  {
+    path: '/products',
+    route: productsRoute,
   },
 ];
 
