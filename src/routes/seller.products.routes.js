@@ -11,7 +11,7 @@ router
   .post(
     productsIndex.productsController.imageMiddleware.array('prod'),
     productsIndex.productsController.addProduct,
-  );
+  ).get(productsIndex.productsController.getAllProducts);
 router.route('/:id').get(productsIndex.productsController.getOneProduct).patch(productsIndex.productsController.updateProduct).delete(productsIndex.productsController.deleteProduct);
 router.route('/images/:id').patch(productsIndex.productsController.updateProductImages); //! Remaining
 

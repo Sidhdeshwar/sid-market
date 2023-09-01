@@ -37,10 +37,23 @@ const deleteProductDB = async (req) => {
   return deleteProd;
 };
 
+const getAllProductsDB = async (req) => {
+  const getAllProd = await productsModal.aggregate([
+    {
+      $match: { price: { $gte: 15000 } },
+    },
+    {
+      $group: { _id },
+    },
+  ]);
+  return getAllProd;
+};
+
 module.exports = {
   addProductDB,
   getOneProductDB,
   updateProductDB,
   updateProductImagesDB,
   deleteProductDB,
+  getAllProductsDB,
 };

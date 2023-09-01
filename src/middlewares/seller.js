@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const catchAsync = require('../utilities/catch.Error');
 const authModel = require('../modules/auth.modal');
+const CreateError = require('../utilities/CreateError');
 
 const secreateKey = process.env.SECREATE_KEY;
 
@@ -15,7 +16,13 @@ const getCompanyData = async (id) => {
 };
 
 const sellerMiddleware = catchAsync(async (req, res, next) => {
-  const token = req.headers.authorization.split(' ')[1];
+  let token;
+  try {
+    // eslint-disable-next-line prefer-destructuring
+    token = req.headers.authorization.split(' ')[1];
+  } catch (err) {
+    return next(new CreateError('Token Required.', 500));
+  }
   jwt.verify(token, secreateKey, async (err, tokenData) => {
     if (err) {
       return next(err);

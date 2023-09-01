@@ -40,7 +40,7 @@ const loginFun = catchAsync(async (req, res, next) => {
     // eslint-disable-next-line no-underscore-dangle
     { id: findUser._id, email: findUser.email },
     secreteKey,
-    { expiresIn: '1d' },
+    { expiresIn: '5d' },
     (err, token) => {
       if (err) {
         return next(err);

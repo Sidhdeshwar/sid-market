@@ -17,7 +17,6 @@ const imageMiddleware = multer({
 });
 // *************************************************************
 const addProduct = catchAsync(async (req, res, next) => {
-  console.log('XXXXXXXXXX ; ', req.body);
   const imagesArray = req.files.map((obj) => obj.path) || [];
   const addProd = await serviceIndex.productsService.addProductDB(
     req,
@@ -67,6 +66,14 @@ const deleteProduct = catchAsync(async (req, res, next) => {
   });
 });
 
+const getAllProducts = catchAsync(async (req, res, next) => {
+  const allProd = await serviceIndex.productsService.getAllProductsDB(req);
+  res.status(200).json({
+    status: 'success',
+    data: allProd,
+  });
+});
+
 module.exports = {
   addProduct,
   imageMiddleware,
@@ -74,4 +81,5 @@ module.exports = {
   updateProduct,
   updateProductImages,
   deleteProduct,
+  getAllProducts,
 };
